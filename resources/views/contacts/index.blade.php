@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
                         <div class="btn-group float-right" role="group">
@@ -35,8 +35,12 @@
                                     <td>{{ $contact->contactRole->name }}</td>
                                     <td>{{ $contact->company->name }} ({{ $contact->company->companyType->name }})</td>
                                     <td>{{ $contact->company->companyStatus->name }}</td>
-                                    <td><a href="{{ route('contacts.edit', $contact) }}"
-                                           class="btn btn-primary">Edit</a></td>
+                                    <td>
+                                        <a href="{{ route('contacts.edit', $contact) }}"
+                                           class="btn btn-primary ">Edit</a> |
+                                        <a href="{{ route('address', $contact) }}"
+                                           class="btn btn-dark float-right">Address</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
