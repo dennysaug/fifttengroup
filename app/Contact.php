@@ -39,7 +39,8 @@ class Contact extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'company_id'
+        'company_id',
+        'contact_role_id'
     ];
 
     /**
