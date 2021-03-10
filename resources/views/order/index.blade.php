@@ -22,8 +22,8 @@
                                     <th>#</th>
                                     <th>Contact</th>
                                     <th>Company</th>
-                                    <th>Items</th>
-                                    <th>Total</th>
+                                    <th><a href="{{ route('order', ['sort'=>'items']) }}">Items</a></th>
+                                    <th><a href="{{ route('order', ['sort'=>'total']) }}">Total</a></th>
                                 </tr>
                                 </thead>
                                 <tbody>

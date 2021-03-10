@@ -15,9 +15,21 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::orderBy('id','desc')->paginate(25);
+        $sort = $request->input('sort');
+        switch ($sort) {
+            case "items":
+                $orders = Order::select('orders.*')->rightJoin('order_items', 'orders.id', '=', 'order_items.order_id')->orderByDesc('order_items.quantity')->paginate(25);
+                break;
+            case "total":
+                $orders = Order::select('orders.*')->rightJoin('order_items', 'orders.id', '=', 'order_items.order_id')->orderByDesc('order_items.price')->paginate(25);
+                break;
+            default:
+
+                $orders = Order::orderBy('id','desc')->paginate(25);
+                break;
+        }
 
         return view('order.index', compact('orders'));
     }
