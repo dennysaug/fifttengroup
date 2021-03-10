@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContactAddressesTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateContactAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_addresses', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('company_id');
             $table->unsignedInteger('contact_id');
-            $table->string('address');
-            $table->enum('default',['Y','N'])->default('N');
             $table->timestamps();
+            $table->softDeletes();
 
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('contact_id')->references('id')->on('contacts');
         });
     }
@@ -31,7 +32,8 @@ class CreateContactAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_addresses', function(Blueprint $table) {
+        Schema::dropIfExists('orders', function(Blueprint $table) {
+            $table->dropForeign('company_id');
             $table->dropForeign('contact_id');
         });
     }

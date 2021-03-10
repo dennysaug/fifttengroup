@@ -10,6 +10,7 @@
     <title>Laravel Test</title>
 
     <!-- Scripts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -36,6 +37,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link" href="{{ route('contacts') }}">Contacts</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('companies') }}">Companies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('order') }}">Orders</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

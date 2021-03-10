@@ -48,4 +48,12 @@ class ContactsController extends Controller
 
         return redirect('contacts')->with('alert', 'Contact updated!');
     }
+
+    #ajax
+
+    public function show(Company $company)
+    {
+        return response()->json($company->contacts);
+
+    }
 }
