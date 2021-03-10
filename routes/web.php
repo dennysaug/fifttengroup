@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
 
     #ajax
     Route::get('ajax/contact/{company?}', 'ContactsController@show')->name('ajax.contacts.get');
+    Route::get('ajax/order/notifications', 'OrderController@notifications')->name('ajax.order.notifications');
 
 });
 

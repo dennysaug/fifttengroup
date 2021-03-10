@@ -22,8 +22,8 @@
                                     <th>#</th>
                                     <th>Contact</th>
                                     <th>Company</th>
-                                    <th><a href="{{ route('order', ['sort'=>'items']) }}">Items</a></th>
-                                    <th><a href="{{ route('order', ['sort'=>'total']) }}">Total</a></th>
+                                    <th><a href="{{ route('order', ['sort'=>'items']) }}" title="click to sort by items">Items</a></th>
+                                    <th><a href="{{ route('order', ['sort'=>'total']) }}" title="click to sort by amount">Total</a></th>
                                 </tr>
                                 </thead>
                                 <tbody>

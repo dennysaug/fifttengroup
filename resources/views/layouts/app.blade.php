@@ -77,9 +77,38 @@
         </nav>
 
         <main class="py-4">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-6">
+                    <div id="divNotification" style="font-weight: bold #CCC;display: none;">xxxxxx</div>
+                </div>
+            </div>
+
             @yield('content')
         </main>
     </div>
     @yield('scripts')
+    <script>
+        $(function() {
+            setInterval(function(){
+                $.ajax({
+                    type: 'GET',
+                    url: "{{ route('ajax.order.notifications') }}",
+                    dataType: 'json',
+                    success: function(response){
+                        if(response.length) {
+                            var html = '';
+                            $.each(response, function(key,notification) {
+                                console.log(notification.data);
+                                html += "<p>"+JSON.parse(notification.data).body+"</p>";
+                                $('#divNotification').empty().show().html(html);
+                            });
+                        }
+                    }
+                });
+            },1000*60*30);
+        });
+
+    </script>
 </body>
 </html>

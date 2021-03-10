@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Company;
-use App\Contact;
-use App\ContactRole;
-use App\Http\Requests\CreateContact;
 use App\Http\Requests\CreateOrder;
-use App\Http\Requests\UpdateContact;
-use App\Mail\OrderShipped;
+use App\Notifications\OrderCreate;
 use App\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -61,11 +59,21 @@ class OrderController extends Controller
 
                 }
                 Mail::to('info@pretendcompany.com')->send(new OrderShipped($order));
+                $order->notify(new OrderCreate($order));
+                dd('done');
             }
         }
 
 
         return redirect()->route('order')->with('alert', 'Order created!');
+    }
+
+    public function notifications()
+    {
+        $notifications = DB::select("select * from notifications where notifications.notifiable_type LIKE '%Order%' and notifications.read_at is null order by notifications.id DESC");
+        DB::update("update notifications set notifications.read_at = CURRENT_TIMESTAMP() where notifications.notifiable_type LIKE '%Order%' and notifications.read_at is null");
+        return $notifications;
+
     }
 
 
