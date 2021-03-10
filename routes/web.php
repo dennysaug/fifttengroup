@@ -34,8 +34,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('companies/{company}/edit', 'CompaniesController@edit')->name('companies.edit');
     Route::post('companies/{company}/update', 'CompaniesController@update')->name('companies.update');
 
-    Route::get('order-mail/{order}', 'OrderController@mail')->name('order-mail');
-
     Route::get('order', 'OrderController@index')->name('order');
     Route::get('order/create', 'OrderController@create')->name('order.create');
     Route::post('order/create', 'OrderController@store')->name('order.store');

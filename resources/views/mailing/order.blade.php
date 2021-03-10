@@ -8,8 +8,8 @@
     <title>Order Details</title>
 </head>
 <body style="alignment-baseline: center;">
-<h3>Order Details</h3>
-<h5>{{ $order->contact->first_name }} {{ $order->contact->last_name }} | {{ $order->company->name }}</h5>
+<h3>Order #{{ $order->id }}</h3>
+<h5>Contact: {{ $order->contact->first_name }} {{ $order->contact->last_name }} | Company: {{ $order->company->name }}</h5>
 <table border="1" style="width: 690px; text-align: center">
     <thead>
     <th>ID</th>

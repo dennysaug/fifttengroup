@@ -8,8 +8,10 @@ use App\ContactRole;
 use App\Http\Requests\CreateContact;
 use App\Http\Requests\CreateOrder;
 use App\Http\Requests\UpdateContact;
+use App\Mail\OrderShipped;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -46,8 +48,7 @@ class OrderController extends Controller
                     }
 
                 }
-
-                //prepare notification
+                Mail::to('info@pretendcompany.com')->send(new OrderShipped($order));
             }
         }
 
@@ -55,8 +56,5 @@ class OrderController extends Controller
         return redirect()->route('order')->with('alert', 'Order created!');
     }
 
-    public function mail(Order $order)
-    {
-        return view('mailing.order', compact('order'));
-    }
+
 }
