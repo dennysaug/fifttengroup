@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Http\Requests\CreateOrder;
+use App\Mail\OrderShipped;
 use App\Notifications\OrderCreate;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
